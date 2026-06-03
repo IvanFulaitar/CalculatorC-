@@ -4,7 +4,11 @@ namespace Calculator.Console.Core;
 
 public sealed class ExpressionParser
 {
+    // Parser залежить не від BasicCalculator напряму, а від ICalculator.
+    // Це дозволяє підставити іншу реалізацію калькулятора, якщо буде потрібно.
     private readonly ICalculator _calculator;
+
+    // Ці поля зберігають стан поточного розбору виразу.
     private string _expression = string.Empty;
     private int _position;
 
@@ -13,11 +17,14 @@ public sealed class ExpressionParser
     {
     }
 
+    // Constructor з ICalculator показує роботу з interface як із залежністю.
     public ExpressionParser(ICalculator calculator)
     {
         _calculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
     }
 
+    // Parse - головний public метод парсера.
+    // Він приймає текст, розбирає його і повертає готовий результат.
     public double Parse(string expression)
     {
         if (string.IsNullOrWhiteSpace(expression))
@@ -43,6 +50,7 @@ public sealed class ExpressionParser
     {
         double value = ParseMultiplicative();
 
+        // while використовується, бо кількість + і - у виразі наперед невідома.
         while (true)
         {
             SkipWhitespace();
@@ -175,6 +183,7 @@ public sealed class ExpressionParser
     {
         int start = _position;
 
+        // Identifier - це назва функції, наприклад sqrt, abs або pow.
         while (!IsAtEnd && char.IsLetter(Current))
         {
             _position++;
@@ -252,5 +261,6 @@ public sealed class ExpressionParser
 
     private bool IsAtEnd => _position >= _expression.Length;
 
+    // Current - property, яка безпечно повертає поточний символ або '\0' в кінці рядка.
     private char Current => IsAtEnd ? '\0' : _expression[_position];
 }

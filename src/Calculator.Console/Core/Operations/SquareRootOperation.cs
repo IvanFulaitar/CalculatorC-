@@ -5,6 +5,7 @@ namespace Calculator.Console.Core.Operations;
 /// <summary>
 /// Конкретний клас для квадратного кореня.
 /// Це unary operation, бо приймає одне число.
+/// Тому клас наслідується від UnaryOperation, а не BinaryOperation.
 /// </summary>
 public sealed class SquareRootOperation : UnaryOperation
 {
@@ -17,6 +18,7 @@ public sealed class SquareRootOperation : UnaryOperation
     {
         if (value < 0)
         {
+            // ArgumentException означає: аргумент методу має неправильне значення.
             throw new ArgumentException("Square root is not defined for negative numbers.");
         }
 

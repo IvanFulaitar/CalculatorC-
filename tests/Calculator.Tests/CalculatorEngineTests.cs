@@ -12,6 +12,7 @@ public class CalculatorEngineTests
     [InlineData(OperationKind.Multiply, 3d, 7d, 21d)]
     [InlineData(OperationKind.Divide, 15d, 3d, 5d)]
     [InlineData(OperationKind.Power, 2d, 8d, 256d)]
+    [InlineData(OperationKind.Percent, 50d, 20d, 10d)]
     public void Calculate_BinaryOperationKind_ReturnsExpectedResult(
         OperationKind kind,
         double left,

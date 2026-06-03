@@ -37,7 +37,8 @@ public sealed class OperationRegistry
             new DivideOperation(),
             new SquareRootOperation(),
             new PowerOperation(),
-            new AbsoluteOperation()
+            new AbsoluteOperation(),
+            new PercentOperation()
         ];
 
         return new OperationRegistry(operations);

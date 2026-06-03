@@ -38,4 +38,6 @@ public sealed class BasicCalculator : ICalculator
     public double Power(double @base, double exponent) => _engine.Calculate(OperationKind.Power, @base, exponent);
 
     public double Abs(double a) => _engine.Calculate(OperationKind.Absolute, a);
+
+    public double Percent(double value, double percent) => _engine.Calculate(OperationKind.Percent, value, percent);
 }

@@ -42,7 +42,7 @@
 10. `src/Calculator.Console/Core/UnaryOperation.cs` - база для операцій з одним числом: `sqrt`, `abs`.
 11. `src/Calculator.Console/Core/Operations/AddOperation.cs` - найпростіша конкретна операція.
 12. `src/Calculator.Console/Core/Operations/DivideOperation.cs` - операція з додатковою перевіркою і `DivideByZeroException`.
-13. `src/Calculator.Console/Core/Operations/*.cs` - інші операції: `Subtract`, `Multiply`, `Power`, `SquareRoot`, `Absolute`.
+13. `src/Calculator.Console/Core/Operations/*.cs` - інші операції: `Subtract`, `Multiply`, `Power`, `SquareRoot`, `Absolute`, `Percent`.
 14. `src/Calculator.Console/Core/OperationRegistry.cs` - реєстрація і пошук операцій через `Dictionary`.
 15. `src/Calculator.Console/Core/ExpressionParser.cs` - складніший файл: розбирає текст `2 + sqrt(9)` у математичний результат.
 16. `src/Calculator.Console/Core/CalculationStatus.cs` - маленький `enum` для статусу історії.
@@ -55,10 +55,10 @@
 
 ## Як тренуватися далі
 
-1. Додай нову операцію `PercentOperation`.
+1. Додай нову операцію `ModuloOperation`.
 2. Додай її в `OperationKind` і `OperationRegistry.CreateDefault()`.
 3. Додай метод у `ICalculator` і `BasicCalculator`, якщо хочеш старий API.
-4. Додай підтримку в `ExpressionParser`, наприклад `percent(50, 20)`.
+4. Додай підтримку в `ExpressionParser`, наприклад `mod(10, 3)`.
 5. Напиши тести на успішний випадок і неправильну кількість аргументів.
 
 ## Розписані моменти

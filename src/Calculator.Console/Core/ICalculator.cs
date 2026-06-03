@@ -61,4 +61,12 @@ public interface ICalculator
     /// <param name="a">The input value.</param>
     /// <returns>The absolute value of <paramref name="a"/>.</returns>
     double Abs(double a);
+
+    /// <summary>
+    /// Calculates a percentage of a number.
+    /// </summary>
+    /// <param name="value">The base value.</param>
+    /// <param name="percent">The percentage value.</param>
+    /// <returns><paramref name="percent"/> percent of <paramref name="value"/>.</returns>
+    double Percent(double value, double percent);
 }

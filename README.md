@@ -9,7 +9,7 @@
 - Рахує базові вирази: `2 + 3`, `10 - 4`, `3 * 7`, `15 / 3`.
 - Підтримує пріоритет операцій: `2 + 3 * 4`.
 - Підтримує дужки: `(2 + 3) * 4`.
-- Підтримує функції: `sqrt(9)`, `abs(-5)`, `pow(2, 8)`.
+- Підтримує функції: `sqrt(9)`, `abs(-5)`, `pow(2, 8)`, `percent(50, 20)`.
 - Зберігає історію успішних і помилкових обчислень.
 - Має xUnit-тести для калькулятора, parser, engine і history.
 
@@ -30,6 +30,7 @@ dotnet run --project src/Calculator.Console/Calculator.Console.csproj
 sqrt(9)
 abs(-5)
 pow(2, 8)
+percent(50, 20)
 history
 history clear
 exit
@@ -63,6 +64,7 @@ src/
         PowerOperation.cs
         SquareRootOperation.cs
         AbsoluteOperation.cs
+        PercentOperation.cs
 
 tests/
   Calculator.Tests/
@@ -117,17 +119,17 @@ tests/
 
 ## Як закріпити знання
 
-Після читання спробуй додати нову операцію `PercentOperation`.
+Після читання спробуй додати нову операцію `ModuloOperation`.
 
 План:
 
-1. Додай `Percent` в `OperationKind`.
-2. Створи `PercentOperation.cs` у папці `Core/Operations`.
+1. Додай `Modulo` в `OperationKind`.
+2. Створи `ModuloOperation.cs` у папці `Core/Operations`.
 3. Наслідуйся від `BinaryOperation`.
-4. Реалізуй формулу, наприклад `left * right / 100`.
+4. Реалізуй формулу, наприклад `left % right`.
 5. Зареєструй операцію в `OperationRegistry.CreateDefault()`.
 6. Додай тест у `CalculatorEngineTests`.
-7. Додай підтримку `percent(50, 20)` в `ExpressionParser`.
+7. Додай підтримку `mod(10, 3)` в `ExpressionParser`.
 8. Запусти `dotnet test`.
 
 ## Навіщо тут багато коментарів

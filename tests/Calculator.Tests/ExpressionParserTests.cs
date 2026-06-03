@@ -22,6 +22,7 @@ public class ExpressionParserTests
     [InlineData("sqrt(9)", 3d)]
     [InlineData("abs(-5)", 5d)]
     [InlineData("pow(2,8)", 256d)]
+    [InlineData("percent(50,20)", 10d)]
     public void Parse_FunctionExpressions_ReturnsExpectedResult(string expression, double expected)
     {
         double result = _parser.Parse(expression);
@@ -55,6 +56,7 @@ public class ExpressionParserTests
     [InlineData("2 + + 3")]
     [InlineData("sqrt()")]
     [InlineData("pow(2)")]
+    [InlineData("percent(50)")]
     [InlineData("(2 + 3")]
     public void Parse_InvalidExpressions_ThrowFormatException(string expression)
     {

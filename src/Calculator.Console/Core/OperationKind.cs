@@ -13,5 +13,6 @@ public enum OperationKind
     Divide,
     SquareRoot,
     Power,
-    Absolute
+    Absolute,
+    Percent
 }

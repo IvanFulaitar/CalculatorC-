@@ -174,7 +174,8 @@ public sealed class ExpressionParser
             "sqrt" when arguments.Count == 1 => _calculator.SquareRoot(arguments[0]),
             "abs" when arguments.Count == 1 => _calculator.Abs(arguments[0]),
             "pow" when arguments.Count == 2 => _calculator.Power(arguments[0], arguments[1]),
-            "sqrt" or "abs" or "pow" => throw new FormatException($"Invalid argument count for function '{identifier}'."),
+            "percent" when arguments.Count == 2 => _calculator.Percent(arguments[0], arguments[1]),
+            "sqrt" or "abs" or "pow" or "percent" => throw new FormatException($"Invalid argument count for function '{identifier}'."),
             _ => throw new FormatException($"Unknown function '{identifier}'.")
         };
     }
@@ -183,7 +184,7 @@ public sealed class ExpressionParser
     {
         int start = _position;
 
-        // Identifier - це назва функції, наприклад sqrt, abs або pow.
+        // Identifier - це назва функції, наприклад sqrt, abs, pow або percent.
         while (!IsAtEnd && char.IsLetter(Current))
         {
             _position++;

@@ -22,7 +22,7 @@ Console.CancelKeyPress += (_, eventArgs) =>
 
 Console.WriteLine("=== Calculator ===");
 Console.WriteLine("Commands: history, history clear, exit");
-Console.WriteLine("Examples: 2 + 3 * 4, sqrt(9), abs(-5), pow(2, 8)");
+Console.WriteLine("Examples: 2 + 3 * 4, sqrt(9), abs(-5), pow(2, 8), percent(50, 20)");
 Console.WriteLine();
 
 while (true)

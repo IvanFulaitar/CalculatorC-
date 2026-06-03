@@ -100,4 +100,15 @@ public class BasicCalculatorTests
 
         Assert.Equal(expected, result, 10);
     }
+
+    [Theory]
+    [InlineData(50d, 20d, 10d)]
+    [InlineData(200d, 15d, 30d)]
+    [InlineData(80d, 12.5d, 10d)]
+    public void Percent_ReturnsExpectedResult(double value, double percent, double expected)
+    {
+        double result = _calculator.Percent(value, percent);
+
+        Assert.Equal(expected, result, 10);
+    }
 }

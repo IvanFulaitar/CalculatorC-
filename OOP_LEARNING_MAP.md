@@ -35,64 +35,81 @@
 5. Напиши тести на успішний випадок і неправильну кількість аргументів.
 
 ## Розписані моменти
-ООП Терміни
 
-class - шаблон для створення об’єктів. Наприклад, CalculatorEngine, CalculationHistory.
-object - конкретний екземпляр класу. Наприклад, new CalculatorEngine().
-interface - контракт: описує, що клас повинен мати, але не каже як саме це працює. Наприклад, IOperation, ICalculator.
-abstract class - базовий клас, з якого не створюють об’єкти напряму. Наприклад, Operation.
-inheritance - наслідування: один клас бере поведінку іншого. Наприклад, AddOperation : BinaryOperation.
-polymorphism - поліморфізм: один виклик працює по-різному залежно від конкретного класу. Наприклад, Execute() викликає різні Calculate().
-encapsulation - інкапсуляція: внутрішні дані сховані, доступ через методи. Наприклад, _records у CalculationHistory.
-constructor - спеціальний метод, який викликається при створенні об’єкта. Наприклад, CalculationHistory(int maxSize).
-property - властивість класу для читання/запису даних. Наприклад, Name, Kind, Count.
-field - внутрішня змінна класу. Наприклад, _engine, _registry, _records.
-method - дія, яку вміє виконувати клас. Наприклад, Calculate(), AddSuccess().
-override - перевизначення методу з базового класу.
-sealed - забороняє наслідування від класу або подальше перевизначення методу.
-public - доступно з інших класів.
-private - доступно тільки всередині цього класу.
-protected - доступно в цьому класі і його дочірніх класах.
-readonly - поле можна присвоїти тільки в constructor або при оголошенні.
-static - належить класу, а не конкретному об’єкту. Наприклад, OperationRegistry.CreateDefault().
-enum - набір фіксованих значень. Наприклад, OperationKind, CalculationStatus.
-nullable - тип, який може бути null. Наприклад, string?, double?.
-exception - помилка, яку можна кинути або обробити. Наприклад, ArgumentException.
-try/catch - конструкція для обробки помилок.
-params - дозволяє передавати змінну кількість аргументів у метод.
-Ключові Методи
+Цей розділ можна використовувати як шпаргалку для повторення. Спочатку прочитай термін, потім знайди його приклад у коді проєкту.
 
-Calculate(OperationKind kind, params double[] arguments) - рахує операцію за enum-типом.
-Calculate(string operationName, params double[] arguments) - рахує операцію за назвою, наприклад "sqrt".
-Execute(params double[] arguments) - загальний метод операції: перевіряє кількість аргументів і запускає формулу.
-Calculate(double[] arguments) - abstract/protected метод у базовому класі, який реалізують дочірні класи.
-Calculate(double left, double right) - метод для операцій з двома числами.
-Calculate(double value) - метод для операцій з одним числом.
-GetRequired(OperationKind kind) - дістає операцію з реєстру або кидає помилку.
-TryGetByName(string? name, out IOperation? operation) - пробує знайти операцію за назвою.
-CreateDefault() - створює стандартний набір операцій.
-GetAll() - повертає всі записи або всі операції.
-AddSuccess(string expression, double result) - додає успішний запис в історію.
-AddError(string expression, string errorMessage) - додає помилковий запис в історію.
-Clear() - очищає історію.
-ToString() - перетворює об’єкт у текст.
-Parse(string expression) - розбирає текстовий математичний вираз.
-Add(double a, double b) - додавання.
-Subtract(double a, double b) - віднімання.
-Multiply(double a, double b) - множення.
-Divide(double a, double b) - ділення.
-SquareRoot(double a) - квадратний корінь.
-Power(double base, double exponent) - піднесення до степеня.
-Abs(double a) - модуль числа.
-Що Закріпити Першим
+### ООП терміни
 
-class, object, constructor
-public, private, protected
-interface
-abstract class
-inheritance
-override
-polymorphism
-encapsulation
-enum
-nullable і try/catch
+| Термін | Що означає | Приклад у проєкті |
+| --- | --- | --- |
+| `class` | Шаблон для створення об'єктів. | `CalculatorEngine`, `CalculationHistory` |
+| `object` | Конкретний екземпляр класу, створений через `new`. | `new CalculatorEngine()` |
+| `interface` | Контракт: описує, що клас повинен мати, але не описує реалізацію. | `IOperation`, `ICalculator` |
+| `abstract class` | Базовий клас, з якого не створюють об'єкти напряму. | `Operation` |
+| `inheritance` | Наслідування: один клас бере спільну поведінку іншого. | `AddOperation : BinaryOperation` |
+| `polymorphism` | Один виклик працює по-різному залежно від конкретного класу. | `Execute()` викликає різні `Calculate()` |
+| `encapsulation` | Внутрішні дані сховані, доступ іде через методи або властивості. | `_records` у `CalculationHistory` |
+| `constructor` | Метод, який викликається при створенні об'єкта. | `CalculationHistory(int maxSize)` |
+| `property` | Властивість класу для читання або запису даних. | `Name`, `Kind`, `Count` |
+| `field` | Внутрішня змінна класу, яка зберігає стан. | `_engine`, `_registry`, `_records` |
+| `method` | Дія, яку вміє виконувати клас. | `Calculate()`, `AddSuccess()` |
+| `override` | Перевизначення методу з базового класу. | `protected override double Calculate(...)` |
+| `sealed` | Забороняє наслідування від класу або подальше перевизначення методу. | `public sealed class CalculatorEngine` |
+| `public` | Доступно з інших класів і проєктів, які бачать цей код. | `public sealed class BasicCalculator` |
+| `private` | Доступно тільки всередині цього класу. | `private readonly List<CalculationRecord> _records` |
+| `protected` | Доступно в цьому класі і його дочірніх класах. | `protected abstract double Calculate(...)` |
+| `readonly` | Поле можна присвоїти тільки при оголошенні або в конструкторі. | `private readonly OperationRegistry _registry` |
+| `static` | Належить класу, а не конкретному об'єкту. | `OperationRegistry.CreateDefault()` |
+| `enum` | Набір фіксованих іменованих значень. | `OperationKind`, `CalculationStatus` |
+| `nullable` | Тип, який може мати значення `null`. | `string?`, `double?` |
+| `exception` | Помилка, яку можна кинути або обробити. | `ArgumentException`, `DivideByZeroException` |
+| `try/catch` | Конструкція для контрольованої обробки помилок. | Обробка помилок у `Program.cs` |
+| `params` | Дозволяє передавати змінну кількість аргументів у метод. | `Execute(params double[] arguments)` |
+
+### Ключові методи
+
+| Метод | Де знаходиться | Для чого потрібен |
+| --- | --- | --- |
+| `Calculate(OperationKind kind, params double[] arguments)` | `CalculatorEngine` | Рахує операцію за enum-типом. |
+| `Calculate(string operationName, params double[] arguments)` | `CalculatorEngine` | Рахує операцію за назвою, наприклад `sqrt`. |
+| `Execute(params double[] arguments)` | `Operation` | Перевіряє кількість аргументів і запускає конкретну формулу. |
+| `Calculate(double[] arguments)` | `Operation` | Базовий abstract/protected метод, який мають реалізувати дочірні класи. |
+| `Calculate(double left, double right)` | `BinaryOperation` | Метод для операцій з двома числами. |
+| `Calculate(double value)` | `UnaryOperation` | Метод для операцій з одним числом. |
+| `GetRequired(OperationKind kind)` | `OperationRegistry` | Дістає операцію з реєстру або кидає помилку. |
+| `TryGetByName(string? name, out IOperation? operation)` | `OperationRegistry` | Пробує знайти операцію за назвою. |
+| `CreateDefault()` | `OperationRegistry` | Створює стандартний набір операцій. |
+| `GetAll()` | `OperationRegistry`, `CalculationHistory` | Повертає всі операції або всі записи історії. |
+| `AddSuccess(string expression, double result)` | `CalculationHistory` | Додає успішний запис в історію. |
+| `AddError(string expression, string errorMessage)` | `CalculationHistory` | Додає помилковий запис в історію. |
+| `Clear()` | `CalculationHistory` | Очищає історію. |
+| `ToString()` | `CalculationRecord` | Перетворює запис історії у текст для виводу. |
+| `Parse(string expression)` | `ExpressionParser` | Розбирає текстовий математичний вираз. |
+| `Add(double a, double b)` | `BasicCalculator` | Додавання. |
+| `Subtract(double a, double b)` | `BasicCalculator` | Віднімання. |
+| `Multiply(double a, double b)` | `BasicCalculator` | Множення. |
+| `Divide(double a, double b)` | `BasicCalculator` | Ділення. |
+| `SquareRoot(double a)` | `BasicCalculator` | Квадратний корінь. |
+| `Power(double base, double exponent)` | `BasicCalculator` | Піднесення до степеня. |
+| `Abs(double a)` | `BasicCalculator` | Модуль числа. |
+
+### Що закріпити першим
+
+1. `class`, `object`, `constructor`
+2. `public`, `private`, `protected`
+3. `interface`
+4. `abstract class`
+5. `inheritance`
+6. `override`
+7. `polymorphism`
+8. `encapsulation`
+9. `enum`
+10. `nullable` і `try/catch`
+
+### Міні-практика
+
+- Знайди в коді всі класи з `sealed` і поясни, чому від них не треба наслідуватися.
+- Відкрий `Operation.cs` і поясни, чому він `abstract`.
+- Відкрий `AddOperation.cs` і `DivideOperation.cs` та порівняй їхні `Calculate`.
+- Додай нову операцію `PercentOperation` і підключи її в `OperationRegistry`.
+- Напиши тест на нову операцію в `CalculatorEngineTests`.

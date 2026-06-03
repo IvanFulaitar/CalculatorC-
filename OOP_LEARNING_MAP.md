@@ -33,3 +33,66 @@
 3. Додай метод у `ICalculator` і `BasicCalculator`, якщо хочеш старий API.
 4. Додай підтримку в `ExpressionParser`, наприклад `percent(50, 20)`.
 5. Напиши тести на успішний випадок і неправильну кількість аргументів.
+
+## Розписані моменти
+ООП Терміни
+
+class - шаблон для створення об’єктів. Наприклад, CalculatorEngine, CalculationHistory.
+object - конкретний екземпляр класу. Наприклад, new CalculatorEngine().
+interface - контракт: описує, що клас повинен мати, але не каже як саме це працює. Наприклад, IOperation, ICalculator.
+abstract class - базовий клас, з якого не створюють об’єкти напряму. Наприклад, Operation.
+inheritance - наслідування: один клас бере поведінку іншого. Наприклад, AddOperation : BinaryOperation.
+polymorphism - поліморфізм: один виклик працює по-різному залежно від конкретного класу. Наприклад, Execute() викликає різні Calculate().
+encapsulation - інкапсуляція: внутрішні дані сховані, доступ через методи. Наприклад, _records у CalculationHistory.
+constructor - спеціальний метод, який викликається при створенні об’єкта. Наприклад, CalculationHistory(int maxSize).
+property - властивість класу для читання/запису даних. Наприклад, Name, Kind, Count.
+field - внутрішня змінна класу. Наприклад, _engine, _registry, _records.
+method - дія, яку вміє виконувати клас. Наприклад, Calculate(), AddSuccess().
+override - перевизначення методу з базового класу.
+sealed - забороняє наслідування від класу або подальше перевизначення методу.
+public - доступно з інших класів.
+private - доступно тільки всередині цього класу.
+protected - доступно в цьому класі і його дочірніх класах.
+readonly - поле можна присвоїти тільки в constructor або при оголошенні.
+static - належить класу, а не конкретному об’єкту. Наприклад, OperationRegistry.CreateDefault().
+enum - набір фіксованих значень. Наприклад, OperationKind, CalculationStatus.
+nullable - тип, який може бути null. Наприклад, string?, double?.
+exception - помилка, яку можна кинути або обробити. Наприклад, ArgumentException.
+try/catch - конструкція для обробки помилок.
+params - дозволяє передавати змінну кількість аргументів у метод.
+Ключові Методи
+
+Calculate(OperationKind kind, params double[] arguments) - рахує операцію за enum-типом.
+Calculate(string operationName, params double[] arguments) - рахує операцію за назвою, наприклад "sqrt".
+Execute(params double[] arguments) - загальний метод операції: перевіряє кількість аргументів і запускає формулу.
+Calculate(double[] arguments) - abstract/protected метод у базовому класі, який реалізують дочірні класи.
+Calculate(double left, double right) - метод для операцій з двома числами.
+Calculate(double value) - метод для операцій з одним числом.
+GetRequired(OperationKind kind) - дістає операцію з реєстру або кидає помилку.
+TryGetByName(string? name, out IOperation? operation) - пробує знайти операцію за назвою.
+CreateDefault() - створює стандартний набір операцій.
+GetAll() - повертає всі записи або всі операції.
+AddSuccess(string expression, double result) - додає успішний запис в історію.
+AddError(string expression, string errorMessage) - додає помилковий запис в історію.
+Clear() - очищає історію.
+ToString() - перетворює об’єкт у текст.
+Parse(string expression) - розбирає текстовий математичний вираз.
+Add(double a, double b) - додавання.
+Subtract(double a, double b) - віднімання.
+Multiply(double a, double b) - множення.
+Divide(double a, double b) - ділення.
+SquareRoot(double a) - квадратний корінь.
+Power(double base, double exponent) - піднесення до степеня.
+Abs(double a) - модуль числа.
+Що Закріпити Першим
+
+class, object, constructor
+public, private, protected
+interface
+abstract class
+inheritance
+override
+polymorphism
+encapsulation
+enum
+nullable і try/catch

@@ -3,16 +3,23 @@ namespace Calculator.Console.Core;
 /// <summary>
 /// BasicCalculator лишається простим фасадом для старого інтерфейсу ICalculator.
 /// Це дозволяє не ламати ExpressionParser і тести, але всередині вже працює повноцінна OOP-модель.
+/// sealed означає, що від цього класу не планується наслідування.
 /// </summary>
 public sealed class BasicCalculator : ICalculator
 {
+    // private readonly поле сховане всередині класу.
+    // readonly гарантує, що engine не буде випадково замінений після створення BasicCalculator.
     private readonly CalculatorEngine _engine;
 
+    // Порожній constructor створює стандартний engine.
+    // Він передає роботу іншому constructor через this(...).
     public BasicCalculator()
         : this(new CalculatorEngine())
     {
     }
 
+    // Цей constructor дозволяє передати власний CalculatorEngine.
+    // Такий підхід зручний для тестів і показує dependency injection без зовнішніх бібліотек.
     public BasicCalculator(CalculatorEngine engine)
     {
         _engine = engine ?? throw new ArgumentNullException(nameof(engine));

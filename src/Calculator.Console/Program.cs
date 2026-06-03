@@ -1,6 +1,8 @@
 using System.Globalization;
 using Calculator.Console.Core;
 
+// const - це незмінне значення, яке відоме ще під час компіляції.
+// Такі обмеження зручно тримати зверху, щоб не шукати "магічні числа" по всій програмі.
 const int MaxInputLength = 200;
 const int MaxHistorySize = 10;
 
@@ -26,6 +28,9 @@ Console.WriteLine();
 while (true)
 {
     Console.Write("Enter expression: ");
+
+    // string? означає nullable string: Console.ReadLine() може повернути null,
+    // наприклад якщо потік вводу закрився. Тому нижче є окрема перевірка input is null.
     string? input = Console.ReadLine();
 
     if (input is null)
@@ -80,6 +85,8 @@ while (true)
         continue;
     }
 
+    // try/catch дозволяє показати користувачу нормальну помилку,
+    // а не завершити програму неконтрольованим exception.
     try
     {
         double result = parser.Parse(input);
@@ -93,6 +100,8 @@ while (true)
         DivideByZeroException or
         ArgumentException)
     {
+        // exception.Message - текст помилки. Ми зберігаємо його в історію,
+        // щоб користувач бачив не тільки успішні обчислення, а й невдалі спроби.
         history.AddError(input, exception.Message);
         Console.WriteLine($"Error: {exception.Message}");
     }

@@ -5,6 +5,7 @@ namespace Calculator.Console.Core;
 /// <summary>
 /// CalculationRecord описує один запис історії.
 /// Тут використані nullable-властивості: Result є null при помилці, ErrorMessage є null при успіху.
+/// Це immutable object: після створення його властивості не змінюються.
 /// </summary>
 public sealed class CalculationRecord
 {
@@ -17,16 +18,21 @@ public sealed class CalculationRecord
         this.Status = errorMessage is null ? CalculationStatus.Success : CalculationStatus.Error;
     }
 
+    // get без set означає, що властивість можна прочитати, але не можна змінити ззовні.
     public string Expression { get; }
 
+    // double? - nullable double. Значення може бути числом або null.
     public double? Result { get; }
 
+    // string? - nullable string. При успішному обчисленні помилки немає, тому тут null.
     public string? ErrorMessage { get; }
 
     public DateTime CreatedAt { get; }
 
     public CalculationStatus Status { get; }
 
+    // override ToString змінює стандартне текстове представлення об'єкта.
+    // Завдяки цьому Console.WriteLine(record) покаже красивий запис історії.
     public override string ToString()
     {
         string time = CreatedAt.ToString("HH:mm:ss", CultureInfo.InvariantCulture);

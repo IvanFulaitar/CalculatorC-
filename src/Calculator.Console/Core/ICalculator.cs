@@ -1,5 +1,9 @@
 namespace Calculator.Console.Core;
 
+/// <summary>
+/// Interface - це контракт для калькулятора.
+/// Він каже, які методи мають бути, але не вирішує, як саме вони рахують.
+/// </summary>
 public interface ICalculator
 {
     /// <summary>

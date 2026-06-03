@@ -26,6 +26,33 @@
 - `src/Calculator.Console/Core/ExpressionParser.cs` - рекурсивний парсер, методи, оператори, колекції, перевірки помилок.
 - `tests/Calculator.Tests/*.cs` - xUnit-тести, які перевіряють нормальні та помилкові випадки.
 
+## План читання файлів
+
+Йди в такому порядку, щоб спочатку зрозуміти запуск програми, потім базові OOP-концепції, потім складніший парсер і тести.
+
+1. `OOP_LEARNING_MAP.md` - загальна мапа: що де лежить, які терміни є, що закріплювати.
+2. `src/Calculator.Console/Program.cs` - старт програми: `while`, `if`, `string?`, `try/catch`, робота з консоллю.
+3. `src/Calculator.Console/Core/ICalculator.cs` - перший `interface`: які методи має калькулятор.
+4. `src/Calculator.Console/Core/BasicCalculator.cs` - клас реалізує `ICalculator` і передає роботу в `CalculatorEngine`.
+5. `src/Calculator.Console/Core/CalculatorEngine.cs` - центральний клас: приймає запит на обчислення і знаходить потрібну операцію.
+6. `src/Calculator.Console/Core/OperationKind.cs` - `enum` зі списком доступних типів операцій.
+7. `src/Calculator.Console/Core/IOperation.cs` - другий `interface`: контракт для кожної математичної операції.
+8. `src/Calculator.Console/Core/Operation.cs` - головний OOP-файл: `abstract class`, `constructor`, `property`, `Execute`, `protected abstract`.
+9. `src/Calculator.Console/Core/BinaryOperation.cs` - база для операцій з двома числами: `+`, `-`, `*`, `/`, `pow`.
+10. `src/Calculator.Console/Core/UnaryOperation.cs` - база для операцій з одним числом: `sqrt`, `abs`.
+11. `src/Calculator.Console/Core/Operations/AddOperation.cs` - найпростіша конкретна операція.
+12. `src/Calculator.Console/Core/Operations/DivideOperation.cs` - операція з додатковою перевіркою і `DivideByZeroException`.
+13. `src/Calculator.Console/Core/Operations/*.cs` - інші операції: `Subtract`, `Multiply`, `Power`, `SquareRoot`, `Absolute`.
+14. `src/Calculator.Console/Core/OperationRegistry.cs` - реєстрація і пошук операцій через `Dictionary`.
+15. `src/Calculator.Console/Core/ExpressionParser.cs` - складніший файл: розбирає текст `2 + sqrt(9)` у математичний результат.
+16. `src/Calculator.Console/Core/CalculationStatus.cs` - маленький `enum` для статусу історії.
+17. `src/Calculator.Console/Core/CalculationRecord.cs` - запис історії: `nullable`, `ToString()`, дата, статус.
+18. `src/Calculator.Console/Core/CalculationHistory.cs` - інкапсуляція списку історії: `private List`, `AddSuccess`, `AddError`, `GetAll`.
+19. `tests/Calculator.Tests/CalculatorEngineTests.cs` - тести центральної логіки.
+20. `tests/Calculator.Tests/CalculationHistoryTests.cs` - тести історії.
+21. `tests/Calculator.Tests/BasicCalculatorTests.cs` - перевірка арифметичних методів.
+22. `tests/Calculator.Tests/ExpressionParserTests.cs` - найскладніші тести: парсер, пріоритет операцій, функції, помилки.
+
 ## Як тренуватися далі
 
 1. Додай нову операцію `PercentOperation`.
